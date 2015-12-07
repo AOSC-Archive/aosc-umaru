@@ -5,7 +5,7 @@ tmp_dir=$PWD/out/tmp/
 
 base_info=$1
 finger_print=$2
-out_dir=$3
+out_dir=$(readlink -f $3)
 
 shift 3
 
