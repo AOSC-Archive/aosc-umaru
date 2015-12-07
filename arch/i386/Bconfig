@@ -1,0 +1,61 @@
+menu "i386-Specified Options"
+	depends on ARCH_I386
+
+choice 
+	prompt "Lowest Runnable Processor (-march compiler option)"
+	default ARCH_I386_MARCH_PPRO
+
+config ARCH_I386_MARCH_I486
+	bool "i486 (SEE HELP!!!)"
+	help
+	  Intel i486 CPU.
+	  Note: if you want to use this option, you should use a target triplet
+	  started with "i486-".
+
+config ARCH_I386_MARCH_PENTIUM
+	bool "Intel Pentium (SEE HELP!!!)"
+	help
+	  Intel Pentium CPU, sometimes unoffically called i586.
+	  Note: if you want to use this option, you should use a target triplet
+	  started with "i586-"
+
+config ARCH_I386_MARCH_PPRO
+	bool "Intel Pentium Pro"
+	help
+	  Intel Pentium Pro CPU.
+
+config ARCH_I386_MARCH_SILVERMONT
+	bool "Inel Silvermont CPU"
+	help
+	  Intel Silvermont CPUs, used in Celeron CPUs or Bay Trail SoCs.
+
+endchoice
+
+choice 
+	prompt "Mostly Optimized Processor (-mtune compiler option)"
+	default ARCH_I386_MTUNE_GENERIC
+
+config ARCH_I386_MTUNE_GENERIC
+	bool "Generic"
+	help
+	  This is the generic option. Use it if you have choose processor
+	  lower than Pentium Pro in -march options, or you cannot determine
+	  the target CPU.
+
+config ARCH_I386_MTUNE_SILVERMONT
+	bool "Inel Silvermont CPU"
+	help
+	  Intel Silvermont CPUs, used in Celeron CPUs or Bay Trail SoCs.
+
+endchoice
+
+menu "Instruction Sets"
+
+config ARCH_I386_INS_MMX
+	bool "MMX Instruction Set"
+	help
+	  MMX Instruction Set, first included in Pentium MMX.
+
+endmenu
+
+endmenu

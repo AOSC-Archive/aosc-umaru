@@ -1,0 +1,38 @@
+menu "Machine Architectures"
+
+choice
+	prompt "Architecture"
+	default ARCH_I386
+
+config ARCH_I386
+	bool "32-bit x86 Systems"
+	---help---
+	  This option is for 32-bit x86 systems. (Usually called i386, i486, 
+	  i586 or i686, based on the minimum CPU requirment)
+	  As the upstream linux kernel cannot now build on a i386 system,
+	  you may be not able to build a i386 system now.
+	  Machines that suits this option:
+	  - Generic PC with a processor vendored by Intel or AMD
+	  - Handheld devices with Intel "Atom" SoCs
+	  - Development boards provided by Intel in recent years
+
+config ARCH_ARM
+	bool "ARM-based Systems (with MMU)"
+	---help---
+	  This option is for systems which utilizes a ARM processor with MMU.
+	  Not all ARM devices have MMU, and AOSC EC do not support these without
+	  MMU.
+	  Machines that suits this option:
+	  - Recent handheld devices with SoCs manufactured by Qualcomm, MediaTek,
+	    Allwinner, etc.
+	  - Development boards which is said to be able to run full Linux.
+	  - Devices with a SoC with a ARM926EJS, ARM1126EJS or Cortex-A series CPU.
+
+endchoice
+
+source "arch/i386/Bconfig"
+
+source "arch/arm/Bconfig"
+
+endmenu
+

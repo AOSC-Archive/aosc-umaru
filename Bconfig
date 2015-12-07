@@ -1,0 +1,3 @@
+mainmenu "AOSC EC Configure"
+
+source "arch/Bconfig"
