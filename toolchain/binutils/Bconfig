@@ -1,0 +1,12 @@
+menu "Binutils"
+	depends on TOOLCHAIN_LIBC_MUSL
+
+choice
+	prompt "Binutils Version"
+
+config TOOLCHAIN_BINUTILS_VER_2_25_1
+	bool "2.25.1"
+
+endchoice
+
+endmenu
