@@ -1,3 +1,75 @@
-menu "Architecture-neutral Optimizations"
+menu "Architecture-neutral Optimizations and Hardening"
+
+choice EC_OPTIMIZE
+	prompt "Compiler Optimize-level"
+	default OPTIMIZE_O2
+
+config OPTIMIZE_O0
+	bool "-O0 level"
+	---help---
+	  This option disables compiler optimization. Use this option for debug builds.
+
+config OPTIMIZE_OS
+	bool "-Os level"
+	---help---
+	  Optimize for size. -Os enables all -O2 optimizations that do not typically 
+	  increase code size. It also performs further optimizations designed to reduce 
+	  code size. 
+
+	  This option has performance overheads, binaries can be even slower than -O1
+	  binaries.
+
+config OPTIMIZE_O1
+	bool "-O1 level"
+	---help---
+	  With -O1, or -O, the compiler tries to reduce code size and execution time, 
+	  without performing any optimizations that take a great deal of compilation 
+	  time. 
+
+	  -O also turns on -fomit-frame-pointer on machines where doing so does not 
+          interfere with debugging. 
+
+config OPTIMIZE_O2
+	bool "-O2 level"
+	---help---
+	  Optimize even more. GCC performs nearly all supported optimizations that do 
+	  not involve a space-speed tradeoff. As compared to -O, this option increases 
+	  both compilation time and the performance of the generated code. 
+
+	  This option is awesome for general builds.
+
+config OPTIMIZE_O3
+	bool "-O3 level"
+	---help---
+	  Optimize yet more. -O3 turns on all optimizations specified by -O2 and also 
+	  turns on the -finline-functions, -funswitch-loops, -fpredictive-commoning, 
+	  -fgcse-after-reload, -ftree-loop-vectorize, -ftree-loop-distribute-patterns, 
+	  -ftree-slp-vectorize, -fvect-cost-model, -ftree-partial-pre and -fipa-cp-clone
+	  options. 
+
+	  Generally you would not want to use this option.
+
+config OPTIMIZE_OFAST
+	bool "-Ofast level"
+	---help---
+	  Disregard strict standards compliance. -Ofast enables all -O3 optimizations. 
+	  It also enables optimizations that are not valid for all standard-compliant 
+	  programs. It turns on -ffast-math and the Fortran-specific -fno-protect-parens
+	  and -fstack-arrays. 
+
+	  Avoid this at all cost, admiral.
+
+config OPTIMIZE_OG
+	bool "-Og level"
+	---help---
+	  Optimize debugging experience. -Og enables optimizations that do not interfere
+	  with debugging. It should be the optimization level of choice for the standard
+	  edit-compile-debug cycle, offering a reasonable level of optimization while
+	  maintaining fast compilation and a good debugging experience. 
+
+	  Use this for debug builds, Arthur Wang likes it when you give gdb traces with
+	  binaries built with this flag.
+
+endchoice	  
 
 endmenu
