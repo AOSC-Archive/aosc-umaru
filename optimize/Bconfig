@@ -79,6 +79,11 @@ choice HARDENING_SSP
         prompt "Stack Smash Protection"
         default HARDENING_SSP_STRONG
 
+config HARDENING_SSP_NONE
+	bool "None"
+	---help---
+	  Brave. Disable this protection.
+
 config HARDENING_SSP_NORMAL
 	bool "Normal"
 	---help---
@@ -109,6 +114,11 @@ choice HARDENING_RELRO
 
 	  This is a good deal, although not always effective.
 
+config HARDENING_RELRO_NONE
+	bool "None"
+	---help---
+	  No RELRO.
+
 config HARDENING_RELRO_PARTIAL
 	bool "Partial RELRO"
 	---help---
@@ -130,6 +140,7 @@ endchoice
 
 config HARDENING_FTF
 	bool "Fortify Source (preprocessor)"
+	default y
 	depends on OPTIMIZE_O1 || OPTIMIZE_O2 || OPTIMIZE_O3 || OPTIMIZE_OFAST || OPTIMIZE_OS
 	---help---
 	  During code generation the compiler knows a great deal of information
@@ -145,6 +156,7 @@ config HARDENING_FTF
 
 config HARDENING_PIC
 	bool "Build PIC (position-independent code)"
+	default y
 	---help---
 	  PIC code differs from traditional code in the method it will perform
 	  access to function code and data objects/variables through an
@@ -161,11 +173,14 @@ config HARDENING_PIC
 
 config HARDENING_PIE
 	bool "Build PIE (position-independent executable)"
+	default y
 	---help---
 	  Position Independent Executables (PIE) are an output of the hardened
 	  package build process. A PIE binary and all of its dependencies are
 	  loaded into random locations within virtual memory each time the
 	  application is executed. This makes Return Oriented Programming
 	  (ROP) attacks much more difficult to execute reliably.
+
+	  This option will be negleted in some packages due to build failure.
 
 endmenu
