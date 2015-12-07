@@ -1,0 +1,7 @@
+menu "Toolchain Settings"
+
+source "toolchain/gcc/Bconfig"
+
+source "toolchain/binutils/Bconfig"
+
+endmenu

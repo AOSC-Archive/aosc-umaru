@@ -1,3 +1,7 @@
 mainmenu "AOSC EC Configure"
 
 source "arch/Bconfig"
+
+source "optimize/Bconfig"
+
+source "toolchain/Bconfig"
