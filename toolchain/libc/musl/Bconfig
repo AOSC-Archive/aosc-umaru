@@ -1,0 +1,12 @@
+menu "Musl-specified Options"
+	depends on TOOLCHAIN_LIBC_MUSL
+
+choice
+	prompt "Musl Version"
+
+config TOOLCHAIN_LIBC_MUSL_VER_1_1_12
+	bool "1.1.12"
+
+endchoice
+
+endmenu

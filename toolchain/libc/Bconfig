@@ -8,3 +8,5 @@ config TOOLCHAIN_LIBC_MUSL
 	  a new libc, lightweight and powerful.
 
 endchoice
+
+source "toolchain/libc/musl/Bconfig"
