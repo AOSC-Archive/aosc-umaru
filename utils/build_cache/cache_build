@@ -14,7 +14,7 @@ shift 3
 	exit 1
 }
 
-finger_md5=$(cat $finger_print | md5sum | cut -d ' ' -f 1)
+finger_md5=$(cat $finger_print | sha256sum | cut -d ' ' -f 1)
 
 mkdir -p $cache_dir $tmp_dir $out_dir
 

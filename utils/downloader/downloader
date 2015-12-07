@@ -5,14 +5,14 @@ source $1
 mkdir -p out/download
 
 if [ -e "out/download/$target" ]; then
-	if [ "$(md5sum "out/download/$target" | cut -d ' ' -f 1)" = $md5sum ]; then
+	if [ "$(sha256sum "out/download/$target" | cut -d ' ' -f 1)" = $sha256sum ]; then
 		echo "Cache hit: $target"
 		exit 0
 	fi
 fi
 
 wget -O "out/download/$target" "$url"
-if [ "$(md5sum "out/download/$target" | cut -d ' ' -f 1)" != $md5sum ]; then
+if [ "$(sha256sum "out/download/$target" | cut -d ' ' -f 1)" != $sha256sum ]; then
 	echo "Failed to download: $url" 1>&2
 	exit 1
 fi
