@@ -1,0 +1,10 @@
+choice
+	prompt "C Runtime Library (libc)"
+	default TOOLCHAIN_LIBC_MUSL
+
+config TOOLCHAIN_LIBC_MUSL
+	bool "musl"
+	help
+	  a new libc, lightweight and powerful.
+
+endchoice
