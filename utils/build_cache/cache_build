@@ -1,0 +1,45 @@
+#! /bin/bash
+
+cache_dir=$PWD/out/cache/
+tmp_dir=$PWD/out/tmp/
+
+base_info=$1
+finger_print=$2
+out_dir=$3
+
+shift 3
+
+[ ! -f "$finger_print" ] && {
+	echo "Fingerprint file not found!"
+	exit 1
+}
+
+finger_md5=$(cat $finger_print | md5sum | cut -d ' ' -f 1)
+
+mkdir -p $cache_dir $tmp_dir
+
+if [ -e ${cache_dir}/${base_info}_${finger_md5}.tar.xz ]; then
+	if diff -q $finger_print ${cache_dir}/${base_info}_${finger_md5}.fingerprint; then
+		echo "Cache Hit!"
+		tar xvfpJ ${cache_dir}/${base_info}_${finger_md5}.tar.xz -C "$out_dir"
+		exit
+	fi
+fi
+
+# Cache miss
+
+echo "Cache miss for ${base_info}_${finger_md5}"
+
+dest_dir=$(mktemp -d -p $tmp_dir)
+
+if PKGDIR=$dest_dir sh "$@"; then
+	echo "Successfully build ${base_info}_${finger_md5}"
+	( cd $dest_dir ; tar cvfJ ${cache_dir}/${base_info}_${finger_md5}.tar.xz )
+	cp $finger_print ${cache_dir}/${base_info}_${finger_md5}.fingerprint
+	echo "${base_info}_${finger_md5} cached"
+else
+	echo "Build ${base_info}_${finger_md5} failed"
+	exit 1
+fi
+
+
