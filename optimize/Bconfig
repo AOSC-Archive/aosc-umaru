@@ -7,69 +7,165 @@ choice EC_OPTIMIZE
 config OPTIMIZE_O0
 	bool "-O0 level"
 	---help---
-	  This option disables compiler optimization. Use this option for debug builds.
+	  This option disables compiler optimization. Use this option for debug
+	  builds.
 
 config OPTIMIZE_OS
 	bool "-Os level"
 	---help---
-	  Optimize for size. -Os enables all -O2 optimizations that do not typically 
-	  increase code size. It also performs further optimizations designed to reduce 
-	  code size. 
+	  Optimize for size. -Os enables all -O2 optimizations that do not
+	  typically increase code size. It also performs further optimizations
+	  designed to reduce code size.
 
-	  This option has performance overheads, binaries can be even slower than -O1
-	  binaries.
+	  This option has performance overheads, binaries can be even slower
+	  than -O1 binaries.
 
 config OPTIMIZE_O1
 	bool "-O1 level"
 	---help---
-	  With -O1, or -O, the compiler tries to reduce code size and execution time, 
-	  without performing any optimizations that take a great deal of compilation 
-	  time. 
+	  With -O1, or -O, the compiler tries to reduce code size and
+	  execution time, without performing any optimizations that take a
+	  great deal of compilation time.
 
-	  -O also turns on -fomit-frame-pointer on machines where doing so does not 
-          interfere with debugging. 
+	  -O also turns on -fomit-frame-pointer on machines where doing so
+	  does not interfere with debugging.
 
 config OPTIMIZE_O2
 	bool "-O2 level"
 	---help---
-	  Optimize even more. GCC performs nearly all supported optimizations that do 
-	  not involve a space-speed tradeoff. As compared to -O, this option increases 
-	  both compilation time and the performance of the generated code. 
+	  Optimize even more. GCC performs nearly all supported optimizations
+	  that do not involve a space-speed tradeoff. As compared to -O, this
+	  option increases both compilation time and the performance of the
+	  generated code.
 
 	  This option is awesome for general builds.
 
 config OPTIMIZE_O3
 	bool "-O3 level"
 	---help---
-	  Optimize yet more. -O3 turns on all optimizations specified by -O2 and also 
-	  turns on the -finline-functions, -funswitch-loops, -fpredictive-commoning, 
-	  -fgcse-after-reload, -ftree-loop-vectorize, -ftree-loop-distribute-patterns, 
-	  -ftree-slp-vectorize, -fvect-cost-model, -ftree-partial-pre and -fipa-cp-clone
-	  options. 
+	  Optimize yet more. -O3 turns on all optimizations specified by -O2
+	  and also turns on the -finline-functions, -funswitch-loops,
+	  -fpredictive-commoning, -fgcse-after-reload, -ftree-loop-vectorize,
+	  -ftree-loop-distribute-patterns, -ftree-slp-vectorize,
+	  -fvect-cost-model, -ftree-partial-pre and -fipa-cp-clone options.
 
 	  Generally you would not want to use this option.
 
 config OPTIMIZE_OFAST
 	bool "-Ofast level"
 	---help---
-	  Disregard strict standards compliance. -Ofast enables all -O3 optimizations. 
-	  It also enables optimizations that are not valid for all standard-compliant 
-	  programs. It turns on -ffast-math and the Fortran-specific -fno-protect-parens
-	  and -fstack-arrays. 
+	  Disregard strict standards compliance. -Ofast enables all -O3
+	  optimizations. It also enables optimizations that are not valid for
+	  all standard-compliant programs. It turns on -ffast-math and the
+	  Fortran-specific -fno-protect-parens and -fstack-arrays.
 
 	  Avoid this at all cost, admiral.
 
 config OPTIMIZE_OG
 	bool "-Og level"
 	---help---
-	  Optimize debugging experience. -Og enables optimizations that do not interfere
-	  with debugging. It should be the optimization level of choice for the standard
-	  edit-compile-debug cycle, offering a reasonable level of optimization while
-	  maintaining fast compilation and a good debugging experience. 
+	  Optimize debugging experience. -Og enables optimizations that do not
+	  interfere with debugging. It should be the optimization level of
+	  choice for the standard edit-compile-debug cycle, offering a
+	  reasonable level of optimization while maintaining fast compilation
+	  and a good debugging experience.
 
-	  Use this for debug builds, Arthur Wang likes it when you give gdb traces with
-	  binaries built with this flag.
+	  Use this for debug builds, Arthur Wang likes it when you give gdb
+	  traces with binaries built with this flag.
 
-endchoice	  
+endchoice
+
+choice HARDENING_SSP
+        prompt "Stack Smash Protection"
+        default HARDENING_SSP_STRONG
+
+config HARDENING_SSP_NORMAL
+	bool "Normal"
+	---help---
+	  Check for stack smashing in functions with vulnerable objects. This
+	  includes functions with buffers larger than 8 bytes or calls to
+	  alloca.
+
+config HARDENING_SSP_STRONG
+	bool "Strong"
+	---help---
+	  Like -fstack-protector, but also includes functions with local arrays
+	  or references to local frame addresses.
+
+	  Although this is the default level, be advised that this has a
+	  certain degree of performance penalty.
+
+endchoice
+
+choice HARDENING_RELRO
+	prompt "Read-only Relocations"
+	default HARDENING_RELRO_FULL
+	---help---
+	  During program load, several ELF memory sections need to be written
+	  to by the linker, but can be turned read-only before turning over
+	  control to the program. This prevents some GOT (and .dtors) overwrite
+	  attacks, but at least the part of the GOT used by the dynamic linker
+	  (.got.plt) is still vulnerable.
+
+	  This is a good deal, although not always effective.
+
+config HARDENING_RELRO_PARTIAL
+	bool "Partial RELRO"
+	---help---
+	  * Compiler command line: gcc -Wl,-z,relro.
+	  * The ELF sections are reordered so that the ELF internal data
+	    sections (.got, .dtors, etc.) precede the program's data sections
+	    (.data and .bss).
+	  * Non-PLT GOT is read-only.
+	  * GOT is still writeable.
+
+config HARDENING_RELRO_FULL
+	bool "Full RELRO"
+	---help---
+	  * Compiler command line: gcc -Wl,-z,relro,-z,now.
+	  * Supports all the features of partial RELRO.
+	  * Bonus: the entire GOT is also (re)mapped as read-only.
+
+endchoice
+
+config HARDENING_FTF
+	bool "Fortify Source (preprocessor)"
+	depends on OPTIMIZE_O1 || OPTIMIZE_O2 || OPTIMIZE_O3 || OPTIMIZE_OFAST || OPTIMIZE_OS
+	---help---
+	  During code generation the compiler knows a great deal of information
+	  about buffer sizes (where possible), and attempts to replace insecure
+	  unlimited length buffer function calls with length-limited ones. This
+	  is especially useful for old, crufty code. Additionally, format
+	  strings in writable memory that contain '%n' are blocked. If an
+	  application depends on such a format string, it will need to be
+	  worked around.
+
+	  Note that for this feature to be fully enabled, the source must also
+	  be compiled with -O1 or higher.
+
+config HARDENING_PIC
+	bool "Build PIC (position-independent code)"
+	---help---
+	  PIC code differs from traditional code in the method it will perform
+	  access to function code and data objects/variables through an
+	  indirect accessing table. This table is called the "Global Offset
+	  Table" because it contains the addresses of code functions and data
+	  objects exported by a shared library.
+
+	  The dynamic loader modifies the GOT slots to resemble the current
+	  memory address for every exported symbol in the library. When the
+	  dynamic loader has completed, the GOT contains full absolute
+	  addresses for each symbol reference constructed from the load address
+	  (PT_LOAD) of the shared library that contains these symbols plus
+	  their offset inside this shared library.
+
+config HARDENING_PIE
+	bool "Build PIE (position-independent executable)"
+	---help---
+	  Position Independent Executables (PIE) are an output of the hardened
+	  package build process. A PIE binary and all of its dependencies are
+	  loaded into random locations within virtual memory each time the
+	  application is executed. This makes Return Oriented Programming
+	  (ROP) attacks much more difficult to execute reliably.
 
 endmenu
