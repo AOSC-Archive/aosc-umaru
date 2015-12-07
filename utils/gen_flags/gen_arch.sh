@@ -1,0 +1,1 @@
+AOSC_EC_ARCH=$(kconfig_enum CONFIG_ARCH_I386 i386 CONFIG_ARCH_ARM arm)

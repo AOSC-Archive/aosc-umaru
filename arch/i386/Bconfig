@@ -35,6 +35,11 @@ choice
 	prompt "Mostly Optimized Processor (-mtune compiler option)"
 	default ARCH_I386_MTUNE_GENERIC
 
+config ARCH_I386_MTUNE_MARCH
+	bool "Same as -march"
+	help
+	  This option will set -mtune to the same as -march.
+
 config ARCH_I386_MTUNE_GENERIC
 	bool "Generic"
 	help
