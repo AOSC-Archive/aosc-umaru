@@ -1,5 +1,5 @@
 build: .config
-	echo "Not implemented yet"
+	utils/build/build.sh
 .config:
 	echo "Please configure first"
 	make help
