@@ -1,2 +1,3 @@
-# aosc-ec
-A new version of AOSC (currently identified as aosc-ec), targeted to low-performance devices.
+# AOSC UMARU
+
+AOSC UMARU (Ultimately Micro And Really Univeral), for storage and performance-constrained micro devices.
