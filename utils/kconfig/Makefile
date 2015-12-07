@@ -16,3 +16,10 @@ conf: $(conf-objs)
 mconf: $(mconf-objs)
 	gcc $(mconf-objs) -lncursesw -o mconf
 
+zconf.hash.c: zconf.hash.c_shipped
+	cp zconf.hash.c_shipped zconf.hash.c
+zconf.tab.c: zconf.tab.c_shipped
+	cp zconf.tab.c_shipped zconf.tab.c
+zconf.lex.c: zconf.lex.c_shipped
+	cp zconf.lex.c_shipped zconf.lex.c
+
