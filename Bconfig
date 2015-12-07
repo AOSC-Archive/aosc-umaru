@@ -1,4 +1,4 @@
-mainmenu "AOSC EC Configure"
+mainmenu "AOSC UMARU Configure"
 
 source "arch/Bconfig"
 
