@@ -1,5 +1,7 @@
 #! /bin/bash
 
+make oldconfig
+
 mkdir -p out
 
 build_banner() {

@@ -11,8 +11,6 @@ menuconfig: utils/bin/mconf Bconfig
 	utils/bin/mconf Bconfig
 oldconfig: utils/bin/conf Bconfig
 	utils/bin/conf --oldconfig Bconfig
-silentoldconfig: utils/bin/conf Bconfig
-	utils/bin/conf --silentoldconfig Bconfig
 utils/bin/mconf: utils/kconfig/mconf
 	cp utils/kconfig/mconf utils/bin/mconf
 utils/kconfig/mconf:
