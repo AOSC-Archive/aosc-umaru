@@ -10,4 +10,17 @@ config BASE_BUSYBOX
 
 source "base/utils/busybox/Bconfig"
 
+choice
+	prompt "Provider of the main shell"
+	default BASE_UTILS_SH_BUSYBOX
+
+config BASE_UTILS_SH_NONE
+	bool "None"
+
+config BASE_UTILS_SH_BUSYBOX
+	bool "Busybox"
+	depends on BASE_BUSYBOX
+
+endchoice
+
 endmenu
