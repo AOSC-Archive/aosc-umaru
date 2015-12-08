@@ -10,7 +10,7 @@ cd out/build/musl &&
 
 mkdir -p destdir &&
 
-tar xvf "$downloads_prefix"/musl-${musl_ver}.tar.bz2 &&
+tar xvf "$downloads_prefix"/musl-${musl_ver}.tar.gz &&
 
 cd musl-${musl_ver} &&
 PATH=$tools_prefix/bin:$PATH CC=$tools_prefix/bin/${AOSC_EC_TRIPLET}-gcc \
