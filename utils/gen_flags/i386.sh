@@ -6,3 +6,5 @@ TARGET_CXXFLAGS_MACHINE+=" $arch_i386_march $arch_i386_mtune"
 
 TARGET_CFLAGS+=" $arch_i386_march $arch_i386_mtune"
 TARGET_CXXFLAGS+=" $arch_i386_march $arch_i386_mtune"
+
+TARGET_MARCH=$arch_i386_march

@@ -1,5 +1,4 @@
 menu "Binutils"
-	depends on TOOLCHAIN_LIBC_MUSL
 
 choice
 	prompt "Binutils Version"

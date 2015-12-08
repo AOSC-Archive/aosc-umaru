@@ -1,0 +1,11 @@
+menu "GCC"
+
+choice
+	prompt "GCC Version"
+
+config TOOLCHAIN_GCC_VER_5_3_0
+	bool "5.3.0"
+
+endchoice
+
+endmenu

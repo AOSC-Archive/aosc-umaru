@@ -2,7 +2,7 @@ source toolchain/binutils/ver.sh
 
 fprint="$(mktemp)"
 
-echo "$PWD"/out/tools $AOSC_EC_ARCH $AOSC_EC_LIBC $AOSC_EC_TRIPLET > $fprint
+echo "$PWD"/out/tools $AOSC_EC_ARCH $AOSC_EC_LIBC $AOSC_EC_TRIPLET "$PWD"/out/sysroot > $fprint
 
 rm -rf $PWD/out/build/binutils-pass1
 mkdir -p $PWD/out/build/binutils-pass1
@@ -11,4 +11,4 @@ utils/build_cache/cache_build binutils-pass1-$binutils_ver-$AOSC_EC_TRIPLET $fpr
 
 rm $fprint
 
-cp -r "$PWD"/out/build/binutils-pass1/destdir/"$PWD"/out/tools/* "$PWD"/out/tools/
+cp -r "$PWD"/out/build/binutils-pass1/destdir/"$PWD"/out/* "$PWD"/out/
