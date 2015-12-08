@@ -3,6 +3,13 @@ source ./.config
 
 mkdir -p out/target/bin
 
+ln -sfv bin out/target/sbin
+
+mkdir -p out/target/usr
+
+ln -sfv ../bin out/target/usr/bin
+ln -sfv ../bin out/target/usr/sbin
+
 [ "$CONFIG_BASE_UTILS_SH_BUSYBOX" = "y" ] && ln -sfv busybox out/target/bin/sh
 
 [ "$CONFIG_BASE_UTILS_CU_BUSYBOX" = "y" ] && {
@@ -11,3 +18,10 @@ mkdir -p out/target/bin
 		ln -sfv busybox "out/target/bin/$i"
 	done
 }
+
+[ "$CONFIG_BASE_UTILS_INIT_BUSYBOX" = "y" ] && ln -sfv busybox out/target/bin/init
+
+[ "$CONFIG_BASE_UTILS_INIT_SCRIPT" = "y" ] && install -m755 $CONFIG_BASE_UTILS_INIT_SCRIPT_PATH out/target/bin/init
+
+[ "$CONFIG_BASE_UTILS_INIT_ROOT_SYMLINK" = "y" ] && ln -sfv bin/init out/target/init
+

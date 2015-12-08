@@ -36,4 +36,34 @@ config BASE_UTILS_CU_BUSYBOX
 
 endchoice
 
+choice
+	prompt "Provider of init"
+	default BASE_UTILS_INIT_BUSYBOX
+
+config BASE_UTILS_INIT_NONE
+	bool "None"
+
+config BASE_UTILS_INIT_BUSYBOX
+	bool "Busybox"
+	depends on BASE_BUSYBOX
+
+config BASE_UTILS_INIT_SCRIPT
+	bool "A script"
+
+endchoice
+
+config BASE_UTILS_INIT_SCRIPT_PATH
+	string "The path of the script provided as init"
+	default "base/utils/target_scripts/invoke_sh.sh"
+	depends on BASE_UTILS_INIT_SCRIPT
+	help
+	  This script will be installed at /sbin/init.
+
+config BASE_UTILS_INIT_ROOT_SYMLINK
+	bool "Symlink /sbin/init to /init"
+	default y
+	depends on ! BASE_UTILS_INIT_NONE
+	help
+	  This symlink will make the system bootable as a initramfs.
+
 endmenu
