@@ -18,7 +18,7 @@ if [[
 	-e ${cache_dir}/${base_info}_${finger_sha256}.tar.xz &&
 	"$(<"$finger_print")" == "$(<"${cache_dir}/${base_info}_${finger_sha256}.fingerprint")"
 ]]; then
-	echo "Cache Hit!"
+	echo "Cache Hit for ${base_info}_${finger_sha256}!"
 	tar xvfpa "${cache_dir}/${base_info}_${finger_sha256}".tar.xz -C "$out_dir"
 	exit
 fi
