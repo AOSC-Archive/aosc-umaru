@@ -2,7 +2,7 @@ source toolchain/gcc/ver.sh
 
 fprint="$(mktemp)"
 
-echo "$PWD"/out/tools $AOSC_EC_ARCH $AOSC_EC_LIBC $AOSC_EC_TRIPLET > $fprint
+echo "$PWD"/out/tools $AOSC_EC_ARCH $AOSC_EC_LIBC $AOSC_EC_TRIPLET "$PWD"/out/sysroot > $fprint
 
 rm -rf $PWD/out/build/gcc-pass1
 mkdir -p $PWD/out/build/gcc-pass1

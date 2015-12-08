@@ -4,6 +4,8 @@ source "toolchain/gcc/Bconfig"
 
 source "toolchain/binutils/Bconfig"
 
+source "toolchain/linux-headers/Bconfig"
+
 source "toolchain/libc/Bconfig"
 
 endmenu

@@ -1,0 +1,11 @@
+menu "Linux Kernel API Headers"
+
+choice
+	prompt "The Linux Kernel Version Where Headers Are Extracted"
+
+config TOOLCHAIN_LINUX_HEADER_VER_4_3
+	bool "4.3"
+
+endchoice
+
+endmenu
