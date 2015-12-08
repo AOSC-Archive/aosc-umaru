@@ -18,11 +18,15 @@ cd gcc-${gcc_ver} &&
 ([ -e $patch_prefix/$gcc_ver-patch.sh ] && PATCHES=$patch_prefix sh $patch_prefix/$gcc_ver-patch.sh || true) &&
 cd .. &&
 
+extra_autoconf_after=""
+
+[ "$AOSC_EC_LIBC" = "musl" ] && extra_autoconf_after+=" --disable-libmudflap"
+
 mkdir build &&
 cd build &&
 ../gcc-${gcc_ver}/configure --prefix="$tools_prefix" --target=${AOSC_EC_TRIPLET} \
 	--with-sysroot="$sysroot" --disable-nls --disable-multilib \
-	--enable-c99 --enable-long-long \
+	--enable-c99 --enable-long-long $extra_autoconf_after \
 	--enable-languages=c,c++ --with-arch=$(echo $TARGET_MARCH | cut -d = -f 2) &&
 MAKEFLAGS=$PAR_MAKEFLAGS make &&
 make DESTDIR=$PKGDIR install
