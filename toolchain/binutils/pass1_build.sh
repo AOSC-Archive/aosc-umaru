@@ -15,8 +15,8 @@ tar xvf "$downloads_prefix"/binutils-${binutils_ver}.tar.bz2 &&
 
 mkdir build &&
 cd build &&
-../binutils-${binutils_ver}/configure --prefix=$tools_prefix --target=$AOSC_EC_TRIPLET \
-	--with-sysroot=$tools_prefix/$AOSC_EC_TRIPLET --disable-nls --disable-multilib &&
+../binutils-${binutils_ver}/configure --prefix="$tools_prefix" --target=${AOSC_EC_TRIPLET} \
+	--with-sysroot="$tools_prefix"/${AOSC_EC_TRIPLET} --disable-nls --disable-multilib &&
 make configure-host &&
 make &&
 make DESTDIR=$PKGDIR install
