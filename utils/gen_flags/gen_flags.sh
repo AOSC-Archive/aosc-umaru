@@ -9,6 +9,6 @@ TARGET_CFLAGS+=" $target_ooption $target_ssp $target_relro $target_pic $target_p
 TARGET_CPPFLAGS+=" $target_ftf"
 TARGET_CXXFLAGS+=" $target_ooption $target_ssp $target_relro $target_pic $target_pie"
 
-par=$CONFiG_MAKE_JOBS
+par=$CONFIG_MAKE_JOBS
 
 [[ $par == +([0-9]) ]] && PAR_MAKEFLAGS="-j$par"
