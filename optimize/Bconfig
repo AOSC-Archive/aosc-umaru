@@ -1,6 +1,6 @@
 menu "Architecture-neutral Optimizations and Hardening"
 
-choice EC_OPTIMIZE
+choice
 	prompt "Compiler Optimize-level"
 	default OPTIMIZE_O2
 
