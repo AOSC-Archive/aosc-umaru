@@ -10,3 +10,4 @@ sh toolchain/binutils/pass1.sh
 sh toolchain/gcc/pass1.sh
 sh toolchain/linux-headers/build.sh
 sh toolchain/libc/build.sh
+sh toolchain/gcc/pass2.sh
