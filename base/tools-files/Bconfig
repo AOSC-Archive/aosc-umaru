@@ -1,0 +1,9 @@
+menu "Files built in the toolchain"
+
+config BASE_TOOLS_FILES_MUSL_LIBC
+	bool "Musl's libc.so and ld.so"
+	depends on TOOLCHAIN_LIBC_MUSL
+	help
+	  This option includes libc.so provided by musl.
+
+endmenu

@@ -18,7 +18,7 @@ if [ -e ${cache_dir}/${base_info}_${finger_sha256}.tar.xz ] &&
 	diff -q $finger_print ${cache_dir}/${base_info}_${finger_sha256}.fingerprint
 then
 	echo "Cache Hit for ${base_info}_${finger_sha256}!"
-	tar xvfpa "${cache_dir}/${base_info}_${finger_sha256}".tar.xz -C "$out_dir"
+	tar xfpa "${cache_dir}/${base_info}_${finger_sha256}".tar.xz -C "$out_dir"
 	exit
 fi
 
@@ -30,10 +30,10 @@ dest_dir=$(TMPDIR=$tmp_dir mktemp -d)
 
 if PKGDIR=$dest_dir bash "$@"; then
 	echo "${base_info}_${finger_sha256} built"
-	(cd "$dest_dir"; tar cvfJ ${cache_dir}/${base_info}_${finger_sha256}.tar.xz *)
+	(cd "$dest_dir"; tar cfJ ${cache_dir}/${base_info}_${finger_sha256}.tar.xz *)
 	cp "$finger_print" "${cache_dir}/${base_info}_${finger_sha256}.fingerprint"
 	echo "${base_info}_${finger_sha256} cached"
-	tar xvfpa ${cache_dir}/${base_info}_${finger_sha256}.tar.xz -C "$out_dir"
+	tar xfpa ${cache_dir}/${base_info}_${finger_sha256}.tar.xz -C "$out_dir"
 else
 	shxt "${base_info}_${finger_sha256} building failed"
 fi
