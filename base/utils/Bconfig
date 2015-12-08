@@ -1,0 +1,13 @@
+menu "System Utilities"
+
+config BASE_BUSYBOX
+	bool "Busybox"
+	help
+	  Busybox is a multi-call utilities toolbox.
+
+	  Note: Selecting this option won't make any commands provided by 
+	  busybox. Please select the provider to busybox.
+
+source "base/utils/busybox/Bconfig"
+
+endmenu

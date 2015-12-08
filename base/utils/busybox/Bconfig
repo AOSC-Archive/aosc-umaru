@@ -1,0 +1,21 @@
+menu "Busybox-specified Options"
+	depends on BASE_BUSYBOX
+
+choice
+	prompt "Busybox version"
+	default BASE_UTILS_BUSYBOX_VER_1_24_1
+
+config BASE_UTILS_BUSYBOX_VER_1_24_1
+	bool "1.24.1"
+
+endchoice
+
+config BASE_UTILS_BUSYBOX_CONFIG
+	string "Path of busybox's .config"
+	default "out/configs/busybox"
+	help
+	  The path of busybox's .config.
+
+	  Note: Cross-compile related options will be overrided.
+
+endmenu
