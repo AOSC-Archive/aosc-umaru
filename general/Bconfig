@@ -1,6 +1,6 @@
 menu "General Options"
 
-config MAKE_J
+config MAKE_JOBS
 	string "Build threads number"
 	default "1"
 	help
