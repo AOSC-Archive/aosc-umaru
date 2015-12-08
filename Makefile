@@ -8,8 +8,10 @@ help:
 	@echo "AOSC EC Makefile"
 	@echo "make menuconfig for a configuration in a dialog-like interface"
 menuconfig: utils/bin/mconf Bconfig
+	utils/gen_bconfig/main.sh
 	utils/bin/mconf Bconfig
 oldconfig: utils/bin/conf Bconfig
+	utils/gen_bconfig/main.sh
 	utils/bin/conf --oldconfig Bconfig
 utils/bin/mconf: utils/kconfig/mconf
 	cp utils/kconfig/mconf utils/bin/mconf

@@ -7,3 +7,5 @@ source "arch/Bconfig"
 source "optimize/Bconfig"
 
 source "toolchain/Bconfig"
+
+source "base/Bconfig"
