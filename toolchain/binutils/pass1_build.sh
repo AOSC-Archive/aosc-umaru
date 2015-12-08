@@ -5,10 +5,11 @@ utils/downloader/downloader toolchain/binutils/down/$binutils_ver || exit 1
 tools_prefix=$PWD/out/tools
 downloads_prefix=$PWD/out/download
 
-
 rm -rf out/build/binutils-pass1 &&
 mkdir -p out/build/binutils-pass1 &&
 cd out/build/binutils-pass1 &&
+
+mkdir -p destdir
 
 tar xvf $downloads_prefix/binutils-${binutils_ver}.tar.bz2 &&
 

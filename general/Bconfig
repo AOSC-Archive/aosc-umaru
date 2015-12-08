@@ -1,0 +1,10 @@
+menu "General Options"
+
+config MAKE_J
+	string "Build threads number"
+	default "1"
+	help
+	  This number will be passed to "make" by -jN.
+	  Note: may be omitted by packages, only a recommending option.
+
+endmenu

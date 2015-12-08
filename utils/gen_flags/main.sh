@@ -1,5 +1,7 @@
 #! /bin/bash
 
+shopt -s extglob
+
 source ./.config
 
 source utils/gen_flags/common.sh

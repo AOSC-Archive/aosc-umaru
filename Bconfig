@@ -1,5 +1,7 @@
 mainmenu "AOSC UMARU Configuration"
 
+source "general/Bconfig"
+
 source "arch/Bconfig"
 
 source "optimize/Bconfig"
