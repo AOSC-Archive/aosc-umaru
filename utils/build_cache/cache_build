@@ -14,10 +14,9 @@ finger_sha256=$(sha256sum "$finger_print") finger_sha256=${finger_sha256%% *}
 mkdir -p "$cache_dir" "$tmp_dir" "$out_dir"
 
 # What do you think you are doing? Just assume the filename works.
-if [[
-	-e ${cache_dir}/${base_info}_${finger_sha256}.tar.xz &&
+if [ -e ${cache_dir}/${base_info}_${finger_sha256}.tar.xz ] && 
 	diff -q $finger_print ${cache_dir}/${base_info}_${finger_sha256}.fingerprint
-]]; then
+then
 	echo "Cache Hit for ${base_info}_${finger_sha256}!"
 	tar xvfpa "${cache_dir}/${base_info}_${finger_sha256}".tar.xz -C "$out_dir"
 	exit
