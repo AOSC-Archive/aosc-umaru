@@ -11,7 +11,7 @@ cd out/build/binutils-pass1 &&
 
 mkdir -p destdir
 
-tar xvf $downloads_prefix/binutils-${binutils_ver}.tar.bz2 &&
+tar xvf "$downloads_prefix"/binutils-${binutils_ver}.tar.bz2 &&
 
 mkdir build &&
 cd build &&
