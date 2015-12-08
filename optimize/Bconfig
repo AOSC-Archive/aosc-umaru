@@ -100,6 +100,11 @@ config HARDENING_SSP_STRONG
 	  Although this is the default level, be advised that this has a
 	  certain degree of performance penalty.
 
+config HARDENING_SSP_UNDEFINED
+	bool "Do not define it"
+	---help---
+	  This is for old-styled compilers which do not support this protection.
+
 endchoice
 
 choice HARDENING_RELRO
