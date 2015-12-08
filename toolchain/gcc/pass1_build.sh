@@ -21,7 +21,7 @@ cd .. &&
 mkdir build &&
 cd build &&
 ../gcc-${gcc_ver}/configure --prefix="$tools_prefix" --target=${AOSC_EC_TRIPLET} \
-	--with-sysroot="$sysroot" --disable-nls --disable-multilib \
+	--with-sysroot="$sysroot" --disable-nls --disable-multilib --disable-shared \
 	--without-headers --with-newlib --disable-decimal-float --disable-libgomp \
 	--disable-libmudflap --disable-libssp --disable-libatomic --disable-libquadmath \
 	--disable-threads --enable-languages=c --with-arch=$(echo $TARGET_MARCH | cut -d = -f 2) &&

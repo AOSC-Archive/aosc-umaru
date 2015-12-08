@@ -3,6 +3,9 @@ menu "GCC"
 choice
 	prompt "GCC Version"
 
+config TOOLCHAIN_GCC_VER_4_7_4
+	bool "4.7.4"
+
 config TOOLCHAIN_GCC_VER_5_3_0
 	bool "5.3.0"
 
