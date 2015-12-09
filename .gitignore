@@ -2,3 +2,9 @@
 .config.old
 out
 *.swp
+vendor/*
+vendor-pack/*
+!vendor/aosc
+!vendor-pack/aosc
+!vendor/Bconfig.*
+!vendor-pack/Bconfig.*
