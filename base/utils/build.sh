@@ -93,6 +93,11 @@ install_busybox_applet() {
 	install_busybox_applet CONFIG_YES yes
 }
 
+[ "$CONFIG_BASE_UTILS_GZIP_BUSYBOX" = "y" ] && {
+	install_busybox_applet CONFIG_GZIP gzip
+	install_busybox_applet CONFIG_GUNZIP gunzip
+}
+
 [ "$CONFIG_BASE_UTILS_INIT_BUSYBOX" = "y" ] && ln -sfv busybox out/target/bin/init
 
 [ "$CONFIG_BASE_UTILS_INIT_SCRIPT" = "y" ] && install -m755 $CONFIG_BASE_UTILS_INIT_SCRIPT_PATH out/target/bin/init

@@ -37,6 +37,19 @@ config BASE_UTILS_CU_BUSYBOX
 endchoice
 
 choice
+	prompt "Provider of g{,un}zip"
+	default BASE_UTILS_GZIP_BUSYBOX
+
+config BASE_UTILS_GZIP_NONE
+	bool "None"
+
+config BASE_UTILS_GZIP_BUSYBOX
+	bool "Busybox"
+	depends on BASE_BUSYBOX
+
+endchoice
+
+choice
 	prompt "Provider of init"
 	default BASE_UTILS_INIT_BUSYBOX
 
