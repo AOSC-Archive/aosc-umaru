@@ -18,4 +18,15 @@ config BASE_UTILS_BUSYBOX_CONFIG
 
 	  Note: Cross-compile related options will be overrided.
 
+menu "Busybox config options to be checked"
+
+config BASE_UTILS_BUSYBOX_CONFIG_SHARED
+	bool "Build a shared busybox"
+	default n
+	depends on BASE_TOOLS_FILES_MUSL_LIBC
+	help
+	  This is for Busybox's CONFIG_STATIC option.
+
+endmenu
+
 endmenu

@@ -23,6 +23,8 @@ cat $CONFIG_BASE_UTILS_BUSYBOX_CONFIG >> $fprint
 echo $TARGET_CFLAGS >> $fprint
 echo $TARGET_CPPFLAGS >> $fprint
 
+sh base/utils/busybox/check_config.sh $CONFIG_BASE_UTILS_BUSYBOX_CONFIG
+
 rm -rf $PWD/out/build/busybox
 mkdir -p $PWD/out/build/busybox
 
