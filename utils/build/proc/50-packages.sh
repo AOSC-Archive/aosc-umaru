@@ -1,7 +1,7 @@
 
 mkdir -p out/target
 
-for i in base vendor-pack
+for i in base vendor vendor-pack
 do
 	[ ! -d $i ] && continue
 	build_banner Building section $i
