@@ -3,6 +3,8 @@ source toolchain/linux-headers/ver.sh
 case $AOSC_EC_ARCH in
 	i386)
 		karch=i386 ;;
+	arm)
+		karch=arm ;;
 	*)
 		echo UNSUPPORTED ARCHITECTURE; exit 1 ;;
 esac

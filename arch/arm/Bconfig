@@ -1,0 +1,53 @@
+menu "ARM-Specified Options"
+	depends on ARCH_ARM
+
+choice 
+	prompt "Lowest Runnable Processor (-march compiler option)"
+	default ARCH_ARM_MARCH_ARMV5TE
+
+config ARCH_ARM_MARCH_ARMV5TE
+	bool "armv5te"
+	help
+	  ARMv5TE CPU.
+
+config ARCH_ARM_MARCH_ARMV6
+	bool "armv6"
+	help
+	  ARMv6 CPU.
+
+config ARCH_ARM_MARCH_ARMV7A
+	bool "armv7a"
+	help
+	  ARMv7-A CPU.
+
+config ARCH_ARM_MARCH_ARMV7VE
+	bool "armv7a with virtualizations"
+	help
+	  ARMV7-A CPU with Virtualizations Extensions.
+
+endchoice
+
+choice 
+	prompt "Mostly Optimized Processor (-mtune compiler option)"
+	default ARCH_ARM_MTUNE_NONE
+
+config ARCH_ARM_MTUNE_NONE
+	bool "None"
+
+config ARCH_ARM_MTUNE_ARM926EJS
+	bool "ARM926EJ-S"
+	help
+	  This is for ARM926EJ-S CPU.
+
+endchoice
+
+menu "Instruction Sets"
+
+config ARCH_ARM_INS_NEON
+	bool "NEON Instruction Set"
+	help
+	  NEON Instruction Set, included in some ARMv{7,8}-A architectures.
+
+endmenu
+
+endmenu
