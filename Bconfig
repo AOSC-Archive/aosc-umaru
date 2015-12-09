@@ -9,3 +9,7 @@ source "optimize/Bconfig"
 source "toolchain/Bconfig"
 
 source "base/Bconfig"
+
+# source "vendor/Bconfig"
+
+source "vendor-pack/Bconfig"

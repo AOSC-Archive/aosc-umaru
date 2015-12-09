@@ -10,6 +10,8 @@ source ./.config
 
 group=$1
 
+mkdir -p out/build_sequence/$(dirname group)
+
 try_add() {
 	name=$1
 	grep -q '^'"$name"'$' out/build_sequence/$group 2>/dev/null && continue

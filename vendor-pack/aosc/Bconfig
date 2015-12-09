@@ -1,0 +1,5 @@
+menu "Packaging methods provided by AOSC"
+
+source "vendor-pack/aosc/cpio/Bconfig"
+
+endmenu

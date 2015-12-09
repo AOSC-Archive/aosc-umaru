@@ -1,0 +1,7 @@
+menu "Vendor-provided Packaging Methods"
+
+
+source "vendor-pack/aosc/Bconfig"
+
+
+endmenu

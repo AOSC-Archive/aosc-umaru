@@ -1,4 +1,4 @@
-for i in base
+for i in base vendor-pack
 do
 	utils/gen_bconfig/sub.sh $i
 done

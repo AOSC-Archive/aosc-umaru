@@ -1,23 +1,5 @@
 menu "General Options"
 
-config PACK_INITRAMFS
-	bool "Pack the target as a initramfs"
-	default n
-	help
-	  If it's chosen, the target system will be packed as a
-	  initramfs (.cpio) file.
-
-	  /init should be present.
-
-config PACK_INITRAMFS_PATH
-	string "Output initramfs path"
-	default "out/target.cpio"
-	depends on PACK_INITRAMFS
-	help
-	  The path of the output initramfs.
-	  If it will be compressed, the suffix of compression (e.g. ".xz") 
-	  should not be added to this path.
-
 config MAKE_JOBS
 	string "Build threads number"
 	default "1"
