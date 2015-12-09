@@ -6,18 +6,14 @@ choice
 	default ARCH_I386_MARCH_PPRO
 
 config ARCH_I386_MARCH_I486
-	bool "i486 (SEE HELP!!!)"
+	bool "i486"
 	help
 	  Intel i486 CPU.
-	  Note: if you want to use this option, you should use a target triplet
-	  started with "i486-".
 
 config ARCH_I386_MARCH_PENTIUM
-	bool "Intel Pentium (SEE HELP!!!)"
+	bool "Intel Pentium"
 	help
 	  Intel Pentium CPU, sometimes unoffically called i586.
-	  Note: if you want to use this option, you should use a target triplet
-	  started with "i586-"
 
 config ARCH_I386_MARCH_PPRO
 	bool "Intel Pentium Pro"
