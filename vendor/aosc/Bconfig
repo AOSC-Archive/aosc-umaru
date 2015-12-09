@@ -1,3 +1,5 @@
 menu "Packages Provided by AOSC"
 
+source "vendor/aosc/linux-pc/Bconfig"
+
 endmenu

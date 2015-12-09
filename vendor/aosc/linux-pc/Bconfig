@@ -1,0 +1,20 @@
+menuconfig AOSC_LINUX_PC
+	bool "Linux Kernel for PCs"
+	depends on ARCH_I386
+
+if AOSC_LINUX_PC
+
+choice
+	prompt "Version"
+	default AOSC_LINUX_PC_VER_4_3
+
+config AOSC_LINUX_PC_VER_4_3
+	bool "4.3"
+
+endchoice
+
+config AOSC_LINUX_PC_CONFIG_PATH
+	string "Path to the .config of the kernel"
+	default "out/configs/linux-pc"
+
+endif # AOSC_LINUX_PC
