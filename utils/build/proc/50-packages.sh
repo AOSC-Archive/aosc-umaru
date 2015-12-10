@@ -1,4 +1,5 @@
 
+rm -rf out/target
 mkdir -p out/target
 
 for i in base extra vendor vendor-pack
