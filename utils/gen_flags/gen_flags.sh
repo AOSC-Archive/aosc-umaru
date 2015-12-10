@@ -12,3 +12,11 @@ TARGET_CXXFLAGS+=" $target_ooption $target_ssp $target_relro $target_pic $target
 par=$CONFIG_MAKE_JOBS
 
 [[ $par == +([0-9]) ]] && PAR_MAKEFLAGS="-j$par"
+
+source toolchain/gcc/ver.sh
+
+case $gcc_ver in
+	4*) LIBSTDCXX_ABI_VER=gcc4 ;;
+	5*) [ "$CONFIG_TOOLCHAIN_GCC_5_LIBSTDCXX_GCC4" = "y" ] && LIBSTDCXX_ABI_VER=gcc4 || LIBSTDCXX_ABI_VER=gcc5 ;;
+esac
+
