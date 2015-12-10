@@ -25,12 +25,16 @@ if [ "$AOSC_EC_ARCH" = "arm" ]; then
 	[ "$AOSC_EC_ARM_FLOAT_ABI" != "soft" ] && fpu="--with-fpu=$AOSC_EC_ARM_FPU"
 fi
 
+case $gcc_ver in
+	4.7*) disabled_libs="--disable-libgomp --disable-libmudflap --disable-libssp --disable-libatomic --disable-libquadmath" ;;
+	5.2*) disabled_libs="--disable-libgomp --disable-libssp --disable-libatomic --disable-libitm --disable-libsanitizer --disable-libquadmath --disable-libvtv --disable-libcilkrts --disable-libstdc++-v3 " ;;
+esac
+
 mkdir build &&
 cd build &&
 ../gcc-${gcc_ver}/configure --prefix="$tools_prefix" --target=${AOSC_EC_TRIPLET} \
 	--with-sysroot="$sysroot" --disable-nls --disable-multilib --disable-shared \
-	--without-headers --with-newlib --disable-decimal-float --disable-libgomp \
-	--disable-libmudflap --disable-libssp --disable-libatomic --disable-libquadmath \
+	--without-headers --with-newlib --disable-decimal-float $disabled_libs \
 	--disable-threads --enable-languages=c --with-arch=$(echo $TARGET_MARCH | cut -d = -f 2) \
 	$float_abi $fpu $hard_float &&
 MAKEFLAGS=$PAR_MAKEFLAGS make all-gcc all-target-libgcc&&
