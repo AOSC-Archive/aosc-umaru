@@ -41,12 +41,51 @@ config ARCH_ARM_MTUNE_ARM926EJS
 
 endchoice
 
+choice
+	prompt "Float-point ABI"
+	default ARCH_ARM_FLOAT_ABI_SOFTFP
+
+config ARCH_ARM_FLOAT_ABI_SOFT
+	bool "Soft"
+
+config ARCH_ARM_FLOAT_ABI_SOFTFP
+	bool "Soft with hardware float-point support"
+
+config ARCH_ARM_FLOAT_ABI_HARD
+	bool "Hard"
+	depends on ARCH_ARM_MARCH_ARMV7A || ARCH_ARM_MARCH_ARMV7VE
+
+endchoice
+
+choice
+	prompt "FPU"
+	depends on ARCH_ARM_FLOAT_ABI_SOFTFP || ARCH_ARM_FLOAT_ABI_HARD
+
+config ARCH_ARM_FPU_VFPV2
+	bool "VFPv2"
+	depends on ARCH_ARM_MARCH_ARMV5TE || ARCH_ARM_MARCH_ARMV6
+
+config ARCH_ARM_FPU_VFPV3_D16
+	bool "VFPv3-D16"
+	depends on ARCH_ARM_MARCH_ARMV7A || ARCH_ARM_MARCH_ARMV7VE
+
+config ARCH_ARM_FPU_VFPV4
+	bool "VFPv4"
+	depends on ARCH_ARM_MARCH_ARMV7A || ARCH_ARM_MARCH_ARMV7VE
+
+config ARCH_ARM_FPU_NEON
+	bool "Neon SIMD"
+	depends on ARCH_ARM_INS_NEON
+
+endchoice
+
 menu "Instruction Sets"
 
 config ARCH_ARM_INS_NEON
 	bool "NEON Instruction Set"
 	help
 	  NEON Instruction Set, included in some ARMv{7,8}-A architectures.
+	depends on ARCH_ARM_MARCH_ARMV7A || ARCH_ARM_MARCH_ARMV7VE
 
 endmenu
 

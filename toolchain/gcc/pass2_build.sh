@@ -20,6 +20,13 @@ cd .. &&
 
 extra_autoconf_after=""
 
+if [ "$AOSC_EC_ARCH" = "arm" ]; then
+	source lib/kconfig_enum.sh
+	extra_autoconf_after+=" --with-float$AOSC_EC_ARM_FLOAT_ABI"
+	[ "$AOSC_EC_ARM_FLOAT_ABI" != "soft" ] && extra_autoconf_after+=" --with-fpu=$AOSC_EC_ARM_FPU"
+	[ "$AOSC_EC_ARM_FLOAT_ABI" = "hard" ] && extra_autoconf_after+=" --with-hard-float"
+fi
+
 [ "$AOSC_EC_LIBC" = "musl" ] && extra_autoconf_after+=" --disable-libmudflap"
 
 mkdir build &&

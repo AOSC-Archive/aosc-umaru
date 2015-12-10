@@ -15,8 +15,9 @@ fi
 if [ "$AOSC_EC_ARCH" = "arm" ]; then
         triplet_cpu=
         ! [ "$triplet_cpu" ] && triplet_cpu=arm
+	[ "$CONFIG_ARCH_ARM_FLOAT_ABI_HARD" = "y" ] && hf=hf
         case $AOSC_EC_LIBC in
-                musl) triplet_abi=musleabi ;;
+                musl) triplet_abi=musleabi$hf ;;
                 *) triplet_abi=unknown ;;
         esac
 fi

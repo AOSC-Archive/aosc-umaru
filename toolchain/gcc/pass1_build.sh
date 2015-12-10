@@ -18,12 +18,20 @@ cd gcc-${gcc_ver} &&
 ([ -e $patch_prefix/$gcc_ver-patch.sh ] && PATCHES=$patch_prefix sh $patch_prefix/$gcc_ver-patch.sh || true) &&
 cd .. &&
 
+if [ "$AOSC_EC_ARCH" = "arm" ]; then
+	source lib/kconfig_enum.sh
+	float_abi="--with-float=$AOSC_EC_ARM_FLOAT_ABI"
+	[ "$AOSC_EC_ARM_FLOAT_ABI" = "hard" ] && hard_float="--with-hard-float"
+	[ "$AOSC_EC_ARM_FLOAT_ABI" != "soft" ] && fpu="--with-fpu=$AOSC_EC_ARM_FPU"
+fi
+
 mkdir build &&
 cd build &&
 ../gcc-${gcc_ver}/configure --prefix="$tools_prefix" --target=${AOSC_EC_TRIPLET} \
 	--with-sysroot="$sysroot" --disable-nls --disable-multilib --disable-shared \
 	--without-headers --with-newlib --disable-decimal-float --disable-libgomp \
 	--disable-libmudflap --disable-libssp --disable-libatomic --disable-libquadmath \
-	--disable-threads --enable-languages=c --with-arch=$(echo $TARGET_MARCH | cut -d = -f 2) &&
+	--disable-threads --enable-languages=c --with-arch=$(echo $TARGET_MARCH | cut -d = -f 2) \
+	$float_abi $fpu $hard_float &&
 MAKEFLAGS=$PAR_MAKEFLAGS make all-gcc all-target-libgcc&&
 make DESTDIR=$PKGDIR install-gcc install-target-libgcc
