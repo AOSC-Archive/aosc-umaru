@@ -32,7 +32,8 @@ fi
 [ "$AOSC_EC_LIBC" = "musl" ] && extra_autoconf_after+=" --disable-libmudflap"
 
 case $gcc_ver in
-	5*) [ "$CONFIG_TOOLCHAIN_GCC_5_LIBSTDCXX_GCC4" = "y" ] && extra_autoconf_after+=" --with-default-libstdcxx-abi=gcc4-compatible" ;;
+	5*) [ "$CONFIG_TOOLCHAIN_GCC_5_LIBSTDCXX_GCC4" = "y" ] && extra_autoconf_after+=" --with-default-libstdcxx-abi=gcc4-compatible"
+	[ "$AOSC_EC_LIBC" = "musl" ] && extra_autoconf_after+=" --disable-libsanitizer" ;;
 esac
 
 mkdir build &&
