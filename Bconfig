@@ -10,6 +10,8 @@ source "toolchain/Bconfig"
 
 source "base/Bconfig"
 
+source "extra/Bconfig"
+
 source "vendor/Bconfig"
 
 source "vendor-pack/Bconfig"
