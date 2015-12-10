@@ -10,6 +10,9 @@ echo $binutils_ver >> $fprint
 echo $gcc_ver >> $fprint
 echo $linux_headers_ver >> $fprint
 
+echo $TARGET_CFLAGS_MACHINE >> $fprint
+echo $TARGET_CXXFLAGS_MACHINE >> $fprint
+
 rm -rf $PWD/out/build/musl
 mkdir -p $PWD/out/build/musl
 
