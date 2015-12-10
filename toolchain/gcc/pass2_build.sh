@@ -1,5 +1,7 @@
 source toolchain/gcc/ver.sh
 
+source ./.config
+
 utils/downloader/downloader toolchain/gcc/down/$gcc_ver || exit 1
 
 sysroot="$PWD"/out/sysroot
@@ -28,6 +30,10 @@ if [ "$AOSC_EC_ARCH" = "arm" ]; then
 fi
 
 [ "$AOSC_EC_LIBC" = "musl" ] && extra_autoconf_after+=" --disable-libmudflap"
+
+case $gcc_ver in
+	5*) [ "$CONFIG_TOOLCHAIN_GCC_5_LIBSTDCXX_GCC4" = "y" ] && extra_autoconf_after+=" --with-default-libstdcxx-abi=gcc4-compatible" ;;
+esac
 
 mkdir build &&
 cd build &&

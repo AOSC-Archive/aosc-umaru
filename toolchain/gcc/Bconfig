@@ -11,4 +11,9 @@ config TOOLCHAIN_GCC_VER_5_2_0
 
 endchoice
 
+config TOOLCHAIN_GCC_5_LIBSTDCXX_GCC4
+	bool "Enable gcc4-compatible libstdc++ abi for GCC 5.x"
+	depends on TOOLCHAIN_GCC_VER_5_2_0
+	default y
+
 endmenu
