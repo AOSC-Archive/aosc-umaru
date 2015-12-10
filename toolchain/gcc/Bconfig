@@ -6,8 +6,8 @@ choice
 config TOOLCHAIN_GCC_VER_4_7_4
 	bool "4.7.4"
 
-config TOOLCHAIN_GCC_VER_5_3_0
-	bool "5.3.0"
+config TOOLCHAIN_GCC_VER_5_2_0
+	bool "5.2.0"
 
 endchoice
 
