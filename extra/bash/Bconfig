@@ -19,7 +19,7 @@ config EXTRA_BASH_READLINE
 
 config EXTRA_BASH_DEBUNDLE_READLINE
 	bool "Use specially built readline instead of the built-in one"
-	default y
+	default n
 	depends on EXTRA_BASH_READLINE && EXTRA_READLINE && ARCH_I386
 
 config EXTRA_BASH_SHARED
