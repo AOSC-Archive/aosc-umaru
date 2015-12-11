@@ -2,6 +2,8 @@ source extra/readline/ver.sh
 
 source ./.config
 
+source lib/ec_strip.sh
+
 fprint="$(mktemp)"
 
 echo $AOSC_EC_ARCH $AOSC_EC_LIBC $AOSC_EC_TRIPLET / > $fprint
@@ -25,6 +27,7 @@ if [ "$CONFIG_EXTRA_READLINE_INSTALL_SHARED" = "y" ]; then
 	mkdir -p out/target/usr/lib/
 	cp out/sysroot/usr/lib/libreadline.so.6 out/target/usr/lib/
 	[ "$CONFIG_EXTRA_READLINE_INSTALL_SHARED_HISTORY" = "y" ] && cp out/sysroot/usr/lib/libhistory.so.6 out/target/usr/lib/
+	ec_strip out/target/usr/lib/lib{readline,history}.so.6
 fi
 
 mkdir -p out/fprint_comps

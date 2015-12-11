@@ -2,6 +2,8 @@ source extra/ncurses/ver.sh
 
 source ./.config
 
+source lib/ec_strip.sh
+
 fprint="$(mktemp)"
 
 echo $AOSC_EC_ARCH $AOSC_EC_LIBC $AOSC_EC_TRIPLET / > $fprint
@@ -42,6 +44,10 @@ if [ "$CONFIG_EXTRA_NCURSES_INSTALL_SHARED" = "y" ]; then
 	[ "$CONFIG_EXTRA_NCURSES_INSTALL_SHARED_FORM" = "y" ] && cp out/sysroot/usr/lib/libform${w}.so.6 out/target/usr/lib/
 	[ "$CONFIG_EXTRA_NCURSES_INSTALL_SHARED_MENU" = "y" ] && cp out/sysroot/usr/lib/libmenu${w}.so.6 out/target/usr/lib/
 	[ "$CONFIG_EXTRA_NCURSES_INSTALL_SHARED_PANEL" = "y" ] && cp out/sysroot/usr/lib/libpanel${w}.so.6 out/target/usr/lib/
+	for i in ncurses form menu panel
+	do
+		ec_strip out/target/usr/lib/lib${i}${w}.so.6
+	done
 fi
 
 if [ "$CONFIG_EXTRA_NCURSES_TERMINFO" ]; then
