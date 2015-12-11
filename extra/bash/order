@@ -1,0 +1,2 @@
+kconfig=CONFIG_EXTRA_BASH
+before="ncurses readline"

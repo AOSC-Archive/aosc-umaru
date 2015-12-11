@@ -21,7 +21,7 @@ try_add() {
 	[ "$kconfig" ] && [ "$(eval echo \$$kconfig)" != "y" ] && return 0
 	[ "$before" ] && for i in $before
 	do
-		try_add $before
+		try_add $i
 	done
 	echo $1 >> out/build_sequence/$group
 }
