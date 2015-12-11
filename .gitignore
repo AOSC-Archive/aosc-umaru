@@ -8,3 +8,4 @@ vendor-pack/*
 !vendor-pack/aosc
 !vendor/Bconfig.*
 !vendor-pack/Bconfig.*
+extra/Bconfig

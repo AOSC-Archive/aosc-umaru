@@ -1,0 +1,47 @@
+menuconfig EXTRA_NCURSES
+	bool "Ncurses"
+	default n
+
+if EXTRA_NCURSES
+
+choice
+	prompt "Version"
+
+config EXTRA_NCURSES_VER_6_0
+	bool "6.0"
+
+endchoice
+
+config EXTRA_NCURSES_INSTALL_SHARED
+	bool "Install the shared library"
+	default n
+	depends on BASE_TOOLS_FILES_MUSL_LIBC
+
+config EXTRA_NCURSES_INSTALL_SHARED_FORM
+	bool "Install shared libform"
+	default n
+	depends on EXTRA_NCURSES_INSTALL_SHARED
+
+config EXTRA_NCURSES_INSTALL_SHARED_MENU
+	bool "Install shared libmenu"
+	default n
+	depends on EXTRA_NCURSES_INSTALL_SHARED
+
+config EXTRA_NCURSES_INSTALL_SHARED_PANEL
+	bool "Install shared libpanel"
+	default n
+	depends on EXTRA_NCURSES_INSTALL_SHARED
+
+config EXTRA_NCURSES_WIDE
+	bool "Build the wide character version"
+	default y
+
+config EXTRA_NCURSES_XX
+	bool "Build libncurses++"
+	default n
+
+config EXTRA_NCURSES_TERMINFO
+	string "Terminfos to be copied to target, seperated by space"
+	default "linux xterm"
+
+endif

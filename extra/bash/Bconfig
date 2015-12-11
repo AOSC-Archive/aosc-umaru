@@ -1,0 +1,30 @@
+menuconfig EXTRA_BASH
+	bool "Bash"
+	default n
+	depends on EXTRA_NCURSES
+
+if EXTRA_BASH
+
+choice
+	prompt "Version"
+
+config EXTRA_BASH_VER_4_3
+	bool "4.3"
+
+endchoice
+
+config EXTRA_BASH_READLINE
+	bool "Build bash with readline support"
+	default y
+
+config EXTRA_BASH_DEBUNDLE_READLINE
+	bool "Use specially built readline instead of the built-in one"
+	default y
+	depends on EXTRA_BASH_READLINE && EXTRA_READLINE && ARCH_I386
+
+config EXTRA_BASH_SHARED
+	bool "Build a shared bash executable"
+	default n
+	depends on (!EXTRA_BASH_DEBUNDLE_READLINE || (EXTRA_READLINE_INSTALL_SHARED && EXTRA_READLINE_INSTALL_SHARED_HISTORY)) && EXTRA_NCURSES_INSTALL_SHARED
+
+endif

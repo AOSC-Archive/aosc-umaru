@@ -1,0 +1,25 @@
+menuconfig EXTRA_READLINE
+	bool "Readline"
+	default n
+
+if EXTRA_READLINE
+
+choice
+	prompt "Version"
+
+config EXTRA_READLINE_VER_6_3
+	bool "6.3"
+
+endchoice
+
+config EXTRA_READLINE_INSTALL_SHARED
+	bool "Install the shared library"
+	default n
+	depends on EXTRA_NCURSES_INSTALL_SHARED
+
+config EXTRA_READLINE_INSTALL_SHARED_HISTORY
+	bool "Install shared libhistory"
+	default n
+	depends on EXTRA_READLINE_INSTALL_SHARED
+
+endif
