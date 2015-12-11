@@ -58,5 +58,6 @@ fi
 mkdir -p out/fprint_comps
 
 echo ncurses: > out/fprint_comps/ncurses
-[ "$CONFIG_EXTRA_NCURSES_INSTALL_SHARED" = "y" ] && echo abi6 >> out/fprint_comps/ncurses
+echo abi6 >> out/fprint_comps/ncurses
+[ "$CONFIG_EXTRA_NCURSES_WIDE" = "y" ] && echo w >> out/fprint_comps/ncurses
 cat out/fprint_comps/libc >> out/fprint_comps/ncurses

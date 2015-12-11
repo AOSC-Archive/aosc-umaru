@@ -1,0 +1,2 @@
+kconfig=CONFIG_EXTRA_READLINE
+before="ncurses"
