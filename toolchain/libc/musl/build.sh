@@ -21,3 +21,7 @@ utils/build_cache/cache_build musl-$musl_ver-$AOSC_EC_TRIPLET $fprint "$PWD"/out
 rm $fprint
 
 cp -r "$PWD"/out/build/musl/destdir/"$PWD"/out/* "$PWD"/out/
+
+mkdir -p out/fprint_comps
+
+echo musl > out/fprint_comps/libc

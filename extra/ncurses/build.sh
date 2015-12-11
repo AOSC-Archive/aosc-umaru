@@ -9,6 +9,8 @@ echo $AOSC_EC_ARCH $AOSC_EC_LIBC $AOSC_EC_TRIPLET / > $fprint
 echo $TARGET_CFLAGS >> $fprint
 echo $TARGET_CPPFLAGS >> $fprint
 
+cat out/fprint_comps/libc >> $fprint
+
 [ "$CONFIG_EXTRA_NCURSES_XX" = "y" ] && echo c++ $LIBSTDCXX_ABI_VER $TARGET_CXXFLAGS >> $fprint
 
 [ "$CONFIG_EXTRA_NCURSES_WIDE" = "y" ] && echo w >> $fprint
@@ -52,4 +54,9 @@ if [ "$CONFIG_EXTRA_NCURSES_TERMINFO" ]; then
 		cp out/{sysroot,target}/usr/share/terminfo/$subdir/$i
 	done
 fi
-		
+
+mkdir -p out/fprint_comps
+
+echo ncurses: > out/fprint_comps/ncurses
+[ "$CONFIG_EXTRA_NCURSES_INSTALL_SHARED" = "y" ] && echo abi6 >> out/fprint_comps/ncurses
+cat out/fprint_comps/libc >> out/fprint_comps/ncurses
