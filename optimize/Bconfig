@@ -86,6 +86,7 @@ config HARDENING_SSP_NONE
 
 config HARDENING_SSP_NORMAL
 	bool "Normal"
+	depends on !TOOLCHAIN_LIBC_MUSL
 	---help---
 	  Check for stack smashing in functions with vulnerable objects. This
 	  includes functions with buffers larger than 8 bytes or calls to
@@ -93,6 +94,7 @@ config HARDENING_SSP_NORMAL
 
 config HARDENING_SSP_STRONG
 	bool "Strong"
+	depends on !TOOLCHAIN_LIBC_MUSL
 	---help---
 	  Like -fstack-protector, but also includes functions with local arrays
 	  or references to local frame addresses.
