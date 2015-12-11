@@ -11,3 +11,4 @@ bash_cv_ulimit_maxfds=yes
 bash_cv_under_sys_siglist=yes
 bash_cv_unusable_rtsigs=no
 gt_cv_int_divbyzero_sigfpe=yes
+ac_cv_rl_version=6.3

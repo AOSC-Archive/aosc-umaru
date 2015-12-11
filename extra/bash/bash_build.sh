@@ -29,6 +29,6 @@ PATH=$tools_prefix/bin:$PATH CFLAGS="$TARGET_CFLAGS" CPPFLAGS="$TARGET_CPPFLAGS"
 	./configure --host=$AOSC_EC_TRIPLET --prefix=/usr --includedir=$sysroot/usr/include \
 	--cache-file=config.cache --bindir=/bin --without-bash-malloc \
 	--$(kconfig_expr CONFIG_EXTRA_BASH_READLINE enable)-readline \
-	--$(kconfig_expr CONFIG_EXTRA_BASH_DEBUNDLE_READLINE with)-installed-readline &&
+	--$(kconfig_expr CONFIG_EXTRA_BASH_DEBUNDLE_READLINE with)-installed-readline$( [ "$CONFIG_EXTRA_BASH_DEBUNDLE_READLINE" = "y" ] && echo "=$sysroot/usr") &&
 PATH=$tools_prefix/bin:$PATH MAKEFLAGS=$PAR_MAKEFLAGS make SHLIB_LIBS=-lncurses &&
 PATH=$tools_prefix/bin:$PATH make DESTDIR=$PKGDIR SHLIB_LIBS=-lncurses install

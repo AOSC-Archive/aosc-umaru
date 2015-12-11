@@ -16,6 +16,8 @@ cat out/fprint_comps/ncurses >> $fprint
 [ "$CONFIG_EXTRA_BASH_READLINE" = "y" ] && echo readline used >> $fprint
 [ "$CONFIG_EXTRA_BASH_DEBUNDLE_READLINE" = "y" ] && cat out/fprint_comps/readline >> $fprint
 
+[ "$CONFIG_EXTRA_BASH_SHARED" = "y" ] && echo shared >> $fprint
+
 rm -rf $PWD/out/build/bash
 mkdir -p $PWD/out/build/bash
 
@@ -27,3 +29,5 @@ cp -r out/build/bash/destdir/* out/sysroot/
 
 mkdir -p out/target/bin
 cp out/sysroot/bin/bash out/target/bin/
+
+ec_strip out/target/bin/bash
