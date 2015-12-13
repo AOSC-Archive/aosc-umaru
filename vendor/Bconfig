@@ -1,7 +1,0 @@
-menu "Vendor-provided Packages"
-
-
-source "vendor/aosc/Bconfig"
-
-
-endmenu
