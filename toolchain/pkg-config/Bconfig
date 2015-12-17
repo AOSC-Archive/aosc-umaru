@@ -1,0 +1,18 @@
+menuconfig TOOLCHAIN_PKG_CONFIG
+	bool "Pkg-config"
+
+if TOOLCHAIN_PKG_CONFIG
+
+choice
+	prompt "Pkg-config version"
+
+config TOOLCHAIN_PKG_CONFIG_VER_0_29
+	bool "0.29"
+
+endchoice
+
+config TOOLCHAIN_PKG_CONFIG_BUILD_GLIB
+	bool "Use the system's glib copy instead of the bundled one"
+	default n
+
+endif

@@ -8,4 +8,6 @@ source "toolchain/linux-headers/Bconfig"
 
 source "toolchain/libc/Bconfig"
 
+source "toolchain/pkg-config/Bconfig"
+
 endmenu
