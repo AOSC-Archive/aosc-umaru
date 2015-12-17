@@ -17,6 +17,6 @@ cd build &&
 ../pkg-config-${pkg_config_ver}/configure --prefix="$tools_prefix" \
 	$( [ "$CONFIG_TOOLCHAIN_PKG_CONFIG_BUILD_GLIB" != "y" ] && echo "--with-internal-glib" ) \
 	--with-pc-path=$sysroot/usr/lib/pkgconfig:$sysroot/usr/share/pkgconfig --with-system-include-path=/usr/include \
-	--with-system-library-path=/usr/lib &&
+	--with-system-library-path=/usr/lib --disable-host-tool &&
 MAKEFLAGS=$PAR_MAKEFLAGS make &&
 make DESTDIR=$PKGDIR install
