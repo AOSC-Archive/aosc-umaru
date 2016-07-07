@@ -13,4 +13,6 @@ sh toolchain/libc/build.sh
 sh toolchain/gcc/pass2.sh
 
 # Below are optional toolchain packages
-sh toolchain/pkg-config/build.sh
+if [ "$CONFIG_TOOLCHAIN_PKG_CONFIG" = "y" ]; then
+	sh toolchain/pkg-config/build.sh
+fi
