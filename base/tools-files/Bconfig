@@ -6,4 +6,8 @@ config BASE_TOOLS_FILES_MUSL_LIBC
 	help
 	  This option includes libc.so provided by musl.
 
+config BASE_TOOLS_FILES_LIBGCC_S
+	bool "GCC's libgcc_s.so.*"
+	help
+	  This option includes libgcc_s.so.* provided by GCC.
 endmenu
